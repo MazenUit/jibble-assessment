@@ -4,6 +4,7 @@ import { fetchMovies } from '@/api/movieService'
 interface Movie { Title: string; Year: string; imdbID: string }
 interface MovieState {
   movies: Movie[]
+  favorites: Movie[]
   title: string
   page: number
   totalPages: number
@@ -12,6 +13,7 @@ interface MovieState {
 export const useMovieStore = defineStore('movie', {
   state: (): MovieState => ({
     movies: [],
+    favorites: [],
     title: 'Batman',
     page: 1,
     totalPages: 0
@@ -27,6 +29,15 @@ export const useMovieStore = defineStore('movie', {
     async searchMovies(title: string, page = 1) {
       this.title = title
       await this.loadMovies(page)
+    },
+    toggleFavorite(movie: Movie) {
+      const exists = this.favorites.find(m => m.imdbID === movie.imdbID)
+      this.favorites = exists
+        ? this.favorites.filter(m => m.imdbID !== movie.imdbID)
+        : [...this.favorites, movie]
+    },
+    isFavorite(id: string) {
+      return this.favorites.some(m => m.imdbID === id)
     }
   },
 

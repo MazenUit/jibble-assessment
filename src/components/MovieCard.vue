@@ -6,9 +6,13 @@
         elevation="2"
         class="movie-card rounded-xl text-center d-flex flex-column justify-center pa-4 mb-4"
       >
-        <h3 class="text-h6 font-weight-medium mb-1 text-truncate">
-          {{ movie.Title }}
-        </h3>
+        <div class="d-flex justify-space-between align-center mb-2">
+          <h3 class="text-h6 font-weight-medium text-truncate">
+            {{ movie.Title }}
+          </h3>
+          <FavoriteButton :movie="movie" />
+        </div>
+
         <p class="text-body-2 text-grey mb-2">Year: {{ movie.Year }}</p>
         <v-chip color="primary" variant="tonal" size="small" class="mx-auto">
           {{ movie.imdbID }}
@@ -19,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import FavoriteButton from '@/components/FavoriteButton.vue'
+
 interface Props {
   movie: { Title: string; Year: string; imdbID: string }
 }

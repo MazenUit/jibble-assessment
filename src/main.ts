@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
+import { router } from '@/router'
 
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -18,4 +19,4 @@ const vuetify = createVuetify({
   locale: { locale: 'en', messages: { en } }
 })
 
-createApp(App).use(pinia).use(vuetify).mount('#app')
+createApp(App).use(pinia).use(router).use(vuetify).mount('#app')
