@@ -1,7 +1,6 @@
 <template>
   <v-container class="py-8">
     <SearchBar @search="search" />
-
     <MovieList :movies="store.movies" :loading="loading" />
 
     <v-pagination
@@ -16,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useMovieStore } from '../stores/movieStore'
 import SearchBar from '../components/SearchBar.vue'
 import MovieList from '../components/MovieList.vue'
@@ -25,16 +24,22 @@ const store = useMovieStore()
 const loading = ref(false)
 const page = ref(1)
 
+onMounted(async () => {
+  loading.value = true
+  await store.loadMovies()
+  loading.value = false
+})
+
 const search = async (query: string) => {
   loading.value = true
   page.value = 1
-  await store.searchMovies(query, page.value)
+  await store.searchMovies(query)
   loading.value = false
 }
 
 const changePage = async (newPage: number) => {
   loading.value = true
-  await store.searchMovies(store.title, newPage)
+  await store.loadMovies(newPage)
   loading.value = false
 }
 </script>
