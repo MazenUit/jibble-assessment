@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-main class="pa-4">
-      <v-btn color="primary" @click="click">Hello Vuetify</v-btn>
+    <v-main>
+      <MoviesView />
     </v-main>
   </v-app>
 </template>
 
 <script setup lang="ts">
-const click = () => alert('Vuetify is active!')
+import MoviesView from './views/MoviesView.vue'
 </script>
