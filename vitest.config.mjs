@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
@@ -7,10 +7,14 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') }
   },
-  server: { port: 5173, open: true },
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/tests/setup.ts' 
+    setupFiles: './src/tests/setup.ts',
+    mockReset: true,
+    deps: {
+      inline: ['vuetify'],
+    },
+    css: false
   }
 })

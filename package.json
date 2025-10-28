@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "Movie listing app built with Vue 3 + TypeScript + Pinia + Vite.",
   "type": "module",
+  "vitest": {
+    "nodeExperimentalLoader": [
+      "@vitest/web-worker/loader"
+    ]
+  },
   "scripts": {
     "dev": "LANG=en vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint \"src/**/*.{ts,vue}\" --fix"
+    "lint": "eslint \"src/**/*.{ts,vue}\" --fix",
+    "test": "NODE_OPTIONS='--experimental-loader=./vitest-css-loader.mjs' vitest --run src/tests/unit/movieCard.test.ts src/tests/unit/movieStore.test.ts",
+    "test:report": "NODE_OPTIONS='--experimental-loader=./vitest-css-loader.mjs' vitest --run src/tests/unit/movieCard.test.ts src/tests/unit/movieStore.test.ts --reporter=html --outputFile test-results/index.html",
+    "test:ui": "NODE_OPTIONS='--experimental-loader=./vitest-css-loader.mjs' vitest --ui"
   },
   "repository": {
     "type": "git",
@@ -37,10 +45,18 @@
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/ui": "^4.0.4",
+    "@vitest/web-worker": "^4.0.4",
+    "@vue/test-utils": "^2.4.6",
+    "cypress": "^15.5.0",
     "eslint": "^9.38.0",
     "eslint-plugin-vue": "^10.5.1",
+    "jsdom": "^27.0.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
+    "vite-node": "^3.2.4",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vitest": "^4.0.4",
     "vue-tsc": "^3.1.2"
   }
 }

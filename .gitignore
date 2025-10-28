@@ -9,6 +9,7 @@ dist-ssr/
 .vite/
 .cache/
 temp/
+test-results/
 
 .env
 .env.*.local

@@ -6,6 +6,7 @@
       <div class="d-flex align-center">
         <RouterLink to="/" class="nav-link" exact>Home</RouterLink>
         <RouterLink to="/favorites" class="nav-link">Favorites</RouterLink>
+        <RouterLink to="/storybook" class="nav-link">Storybook</RouterLink>
       </div>
     </v-container>
   </v-app-bar>
