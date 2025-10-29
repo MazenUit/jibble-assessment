@@ -26,7 +26,7 @@ const page = ref(1)
 
 onMounted(async () => {
   loading.value = true
-  await store.loadMovies()
+  await store.init()
   loading.value = false
 })
 
